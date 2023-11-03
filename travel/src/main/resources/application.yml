@@ -1,0 +1,30 @@
+# 端口
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+# mybatis
+mybatis:
+  type-aliases-package: com.yh.pojo
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true #驼峰
+
+# 数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///traveldb?useSSL=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false #避免改了模板还要重启服务器
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+  # 分页插件
+pagehelper:
+  helper-dialect: mysql
