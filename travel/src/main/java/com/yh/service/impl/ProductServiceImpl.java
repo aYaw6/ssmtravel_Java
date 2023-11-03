@@ -1,5 +1,6 @@
 package com.yh.service.impl;
 
+import com.yh.mapper.OrderMapper;
 import com.yh.mapper.ProductMapper;
 import com.yh.pojo.Product;
 import com.yh.service.ProductService;
@@ -19,6 +20,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductMapper productMapper;
+
+    @Autowired
+    OrderMapper orderMapper;
 
     @Override
     public List<Product> findAll() {
@@ -42,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(Integer pid) {
+        orderMapper.updateById(pid);
         productMapper.deleteById(pid);
     }
 }
