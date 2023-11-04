@@ -5,4 +5,48 @@
         update orders
             set productId = null where productId = #{productId}
     </update>
+    <!--查询所有-->
+    <resultMap id="findAllresultMap" type="Orders" autoMapping="true">
+        <id property="id" column="id"/>
+        <!--映射product-->
+        <association property="product" javaType="Product" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="findAllresultMap">
+        select * from orders o , product p where o.productId =  p.id
+    </select>
+
+    <resultMap id="findByIdResultMap" type="orders" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="product" javaType="Product" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+        <association property="member" javaType="Member" autoMapping="true">
+            <id property="id" column="mid"/>
+        </association>
+        <collection property="travellers" javaType="List" ofType="Traveller" autoMapping="true">
+            <id property="id" column="id"/>
+        </collection>
+    </resultMap>
+    <select id="findById" resultMap="findByIdResultMap">
+        select *,
+               o.id as oid,
+               p.id as pid,
+               m.id as mid,
+               t.id as tid,
+               m.name mname,
+               m.phoneNum mphoneNum
+        from
+            orders o
+                left join product p on o.productId = p.id
+                left join order_traveller ot on ot.orderId = o.id
+                left join traveller t on ot.travellerId = t.id
+                left join member m on o.memberId = m.id
+        where
+            o.id = #{id}
+    </select>
 </mapper>

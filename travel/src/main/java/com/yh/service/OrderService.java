@@ -1,4 +1,4 @@
-package com.yh.mapper;
+package com.yh.service;
 
 import com.yh.pojo.Orders;
 
@@ -6,12 +6,11 @@ import java.util.List;
 
 /**
  * @Auther: Yanjw
- * @Date: 2023/11/3 - 11 - 03 - 11:51
- * @Description: com.yh.mapper
+ * @Date: 2023/11/3 - 11 - 03 - 15:38
+ * @Description: com.yh.service
  * @version: 1.0
  */
-public interface OrderMapper {
-    void updateById(Integer pid);
+public interface OrderService {
     List<Orders> findAll();
     Orders findById(Integer oid);
 }

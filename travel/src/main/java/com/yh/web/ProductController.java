@@ -68,4 +68,13 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:findAll";
     }
+
+    //批量删除
+    @PostMapping("selectDelete")
+    public String selectDelete(int[]ids){
+        for (int id : ids){
+            productService.deleteById(id);
+        }
+        return "redirect:findAll";
+    }
 }

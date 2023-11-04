@@ -7,12 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @Auther: Yanjw
- * @Date: 2023/11/2 - 11 - 02 - 12:17
- * @Description: com.yh.pojo
- * @version: 1.0
- */
 @Data
 public class Orders {
     private String id;
@@ -23,9 +17,11 @@ public class Orders {
     private int orderStatus;
     private String orderStatusStr;
     private int peopleCount;
+
     private Product product;
     private List<Traveller> travellers;
     private Member member;
+
     private Integer payType;
     private String payTypeStr;
     private String orderDesc;
@@ -33,12 +29,17 @@ public class Orders {
     private Integer productId;
     private Integer memberId;
 
-    public String getOrderTimeStr() {
-        // 对日期格式化
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        orderTimeStr =  dateFormat.format(orderTime);
+    //添加游客
+    private List<Integer> travellerId;
 
-        return orderTimeStr;
+
+    public String getOrderTimeStr() {
+       if(orderTime != null){
+           // 对日期格式化
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+           orderTimeStr =  dateFormat.format(orderTime);
+       }
+           return orderTimeStr;
     }
 
     public String getPayTypeStr() {
@@ -49,7 +50,6 @@ public class Orders {
         }else if(payType == 2){
             payTypeStr = "其他";
         }
-
         return payTypeStr;
     }
 

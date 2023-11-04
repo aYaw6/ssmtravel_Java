@@ -1,13 +1,11 @@
 package com.yh.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- * @Auther: Yanjw
- * @Date: 2023/11/2 - 11 - 02 - 12:18
- * @Description: com.yh.pojo
- * @version: 1.0
- */
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Traveller {
     private String id;
