@@ -49,4 +49,35 @@
         where
             o.id = #{id}
     </select>
+
+    <!--
+	对于自增id来说，方法2：增加完毕后，返回自增的id;
+		这个也是mybatis,可能会问到面试题；
+		-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="orders">
+        <!--
+            mysql，自增不成功；或者没有自增列的情况；oracle.
+            <selectKey keyProperty="id" resultType="java.lang.Integer">
+                select LAST_INSERT_ID()
+            </selectKey>
+        -->
+        <!--新增订单-->
+        insert into orders(
+        orderNum,
+        orderTime,
+        peopleCount,
+        orderDesc,
+        payType,
+        orderStatus,
+        productId,
+        memberId)
+        values(#{orderNum},
+        #{orderTime},
+        #{peopleCount},
+        #{orderDesc},
+        #{payType},
+        #{orderStatus},
+        #{productId},
+        #{memberId})
+    </insert>
 </mapper>

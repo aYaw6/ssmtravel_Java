@@ -5,6 +5,7 @@ import com.yh.mapper.ProductMapper;
 import com.yh.pojo.Product;
 import com.yh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     OrderMapper orderMapper;
 
+    //@RolesAllowed("ADMIN")   //({"ADMIN"})  或({"ADMIN","USER"})
+//    @Secured("ROLE_ADMIN")
+    @PreAuthorize("authentication.principal.username == 'jack'")
     @Override
     public List<Product> findAll() {
         return productMapper.findAll();

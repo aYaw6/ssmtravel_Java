@@ -1,6 +1,7 @@
 package com.yh.mapper;
 
 import com.yh.pojo.Orders;
+import org.junit.jupiter.api.Order;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface OrderMapper {
     void updateById(Integer pid);
     List<Orders> findAll();
     Orders findById(Integer oid);
+    void save(Orders orders);
 }

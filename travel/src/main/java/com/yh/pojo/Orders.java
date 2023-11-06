@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 public class Orders {
-    private String id;
+    private Integer id;
     private String orderNum;
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date orderTime;

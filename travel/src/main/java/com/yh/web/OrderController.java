@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -66,5 +67,12 @@ public class OrderController {
         model.addAttribute("memberList", memberList);
         model.addAttribute("travellerList", travellerList);
         return "order-add";
+    }
+
+    @PostMapping("save")
+    public String save(Orders orders){
+        //这里Orders,需要修改一下;
+        orderService.save(orders,orders.getTravellerId());
+        return "redirect:findAll";
     }
 }
